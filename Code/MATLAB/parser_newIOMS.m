@@ -29,14 +29,18 @@ while ~feof(fid)
                 % Extraer datos de los sensores
                 num_medidas = length(subpartes)-3;
                 medidas = [];
+                count = 0;
                 for j = 1:num_medidas
                     datos = str2double(strsplit(subpartes{j + 1}, ','));
-                    medidas(j,:) = datos;
+                    if length(datos)==5
+                        medidas(count+1,:) = datos;
+                        count = count+1;
+                    end
                 end
 
                 % Extraer temperatura y humedad
                 trh_datos = str2double(strsplit(subpartes{end}, ','));
-                trh_repetido = repmat(trh_datos, num_medidas, 1);
+                trh_repetido = repmat(trh_datos, count, 1);
                 medidas = cat(2,medidas,trh_repetido);
                 if length(trh_datos)==4
                 % Extraer datos GPS
@@ -44,15 +48,15 @@ while ~feof(fid)
                     for j =2:length(gps_datos)
                         gps_loc(j)=str2double(gps_datos{j});
                     end
-                    gps_locR = repmat(gps_loc(2:end), num_medidas, 1);
+                    gps_locR = repmat(gps_loc(2:end), count, 1);
                     medidas = cat(2,medidas,gps_locR);
 
                     if tant_ECS == 0
-                        t = second(gps_datos{1})-num_medidas:second(gps_datos{1})-1;
+                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;
                         tant_ECS = gps_datos{1};
                     else
-                        deltat = seconds(datetime(gps_datos{1})-datetime(tant_ECS))/num_medidas;
-                        t = resultados_ECS(end:end):deltat:resultados_ECS(end:end)+deltat*num_medidas-deltat;
+                        deltat = seconds(datetime(gps_datos{1})-datetime(tant_ECS))/(count);
+                        t = resultados_ECS(end:end):deltat:resultados_ECS(end:end)+deltat*(count)-deltat;
                         tant_ECS = gps_datos{1};
                     end
                     medidas = cat(2,medidas,t.');
@@ -108,14 +112,18 @@ while ~feof(fid)
                 % Extraer datos de los sensores
                 num_medidas = length(subpartes)-3;
                 medidas = [];
+                count = 0;
                 for j = 1:num_medidas
                     datos = str2double(strsplit(subpartes{j + 1}, ','));
-                    medidas(j,:) = datos;
+                    if length(datos)==4
+                        medidas(count+1,:) = datos;
+                        count = count+1;
+                    end
                 end
             
                 % Extraer temperatura y humedad
                 trh_datos = str2double(strsplit(subpartes{end}, ','));
-                trh_repetido = repmat(trh_datos, num_medidas, 1);
+                trh_repetido = repmat(trh_datos, (count), 1);
                 medidas = cat(2,medidas,trh_repetido);
                 if length(trh_datos)==8
                     % Extraer datos GPS
@@ -123,16 +131,16 @@ while ~feof(fid)
                     for j =2:length(gps_datos)
                         gps_loc(j)=str2double(gps_datos{j});
                     end
-                    gps_locR = repmat(gps_loc(2:end), num_medidas, 1);
+                    gps_locR = repmat(gps_loc(2:end), (count), 1);
                     medidas = cat(2,medidas,gps_locR);
 
                     if tant_MXA == 0
-                        t = second(gps_datos{1})-num_medidas:second(gps_datos{1})-1;
+                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;
                         t = t - (t(1)-resultados_ECS(1,end));
                         tant_MXA = gps_datos{1};
                     else
-                        deltat = seconds(datetime(gps_datos{1})-datetime(tant_MXA))/num_medidas;
-                        t = resultados_MXA(end:end):deltat:resultados_MXA(end:end)+deltat*num_medidas-deltat;
+                        deltat = seconds(datetime(gps_datos{1})-datetime(tant_MXA))/(count);
+                        t = resultados_MXA(end:end):deltat:resultados_MXA(end:end)+deltat*(count)-deltat;
                         tant_MXA = gps_datos{1};                    
                     end
                     medidas = cat(2,medidas,t.');
@@ -188,14 +196,18 @@ while ~feof(fid)
                 % Extraer datos de los sensores
                 num_medidas = length(subpartes)-3;
                 medidas = [];
+                count = 0;
                 for j = 1:num_medidas
                     datos = str2double(strsplit(subpartes{j + 1}, ','));
-                    medidas(j,:) = datos;
+                    if length(datos)==8
+                        medidas(count+1,:) = datos;
+                        count = count+1;
+                    end
                 end
             
                 % Extraer temperatura y humedad
                 trh_datos = str2double(strsplit(subpartes{end}, ','));
-                trh_repetido = repmat(trh_datos, num_medidas, 1);
+                trh_repetido = repmat(trh_datos, (count), 1);
                 medidas = cat(2,medidas,trh_repetido);
                 if length(trh_datos)==8
                     % Extraer datos GPS
@@ -203,16 +215,16 @@ while ~feof(fid)
                     for j =2:length(gps_datos)
                         gps_loc(j)=str2double(gps_datos{j});
                     end
-                    gps_locR = repmat(gps_loc(2:end), num_medidas, 1);
+                    gps_locR = repmat(gps_loc(2:end), (count), 1);
                     medidas = cat(2,medidas,gps_locR);
 
                     if tant_MXD == 0
-                        t = second(gps_datos{1})-num_medidas:second(gps_datos{1})-1;
+                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;
                         t = t - (t(1)-resultados_ECS(1,end));
                         tant_MXD = gps_datos{1};
                     else
-                        deltat = seconds(datetime(gps_datos{1})-datetime(tant_MXD))/num_medidas;
-                        t = resultados_MXD(end:end):deltat:resultados_MXD(end:end)+deltat*num_medidas-deltat;
+                        deltat = seconds(datetime(gps_datos{1})-datetime(tant_MXD))/(count);
+                        t = resultados_MXD(end:end):deltat:resultados_MXD(end:end)+deltat*(count)-deltat;
                         tant_MXD = gps_datos{1};                    
                     end
                     medidas = cat(2,medidas,t.');
