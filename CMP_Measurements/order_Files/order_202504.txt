@@ -1,0 +1,20 @@
+Number assignment of each measurement location/height
+1. DPL
+2. ZdC
+3. ZdM
+4. AdC
+5. ENV
+
+Permutation 1 20250423:
+#ZdM,ZdC,DPL,AdC,ENV;
+Olfactometries 1 20250423:
+&134.7,85.98,12056.47,159.29,73.69;
+ACQ Time respect to 9am (min):
+$30,75,120,150,165;
+
+Permutation 2 20250423:
+#AdC,DPL,ENV,ZdC,ZdM;
+Olfactometries 2 20250423:
+&65.48,9971.3,69.34,115.95,118.96;
+ACQ Time respect to 9am (min):
+$180,200,215,230,245;
