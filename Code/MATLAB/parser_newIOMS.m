@@ -52,7 +52,7 @@ while ~feof(fid)
                     medidas = cat(2,medidas,gps_locR);
 
                     if tant_ECS == 0
-                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;
+                        t = second(gps_datos{1})-(count/2):0.5:second(gps_datos{1})-0.5;
                         tant_ECS = gps_datos{1};
                     else
                         deltat = seconds(datetime(gps_datos{1})-datetime(tant_ECS))/(count);
@@ -135,8 +135,7 @@ while ~feof(fid)
                     medidas = cat(2,medidas,gps_locR);
 
                     if tant_MXA == 0
-                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;
-                        t = t - (t(1)-resultados_ECS(1,end));
+                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;               
                         tant_MXA = gps_datos{1};
                     else
                         deltat = seconds(datetime(gps_datos{1})-datetime(tant_MXA))/(count);
@@ -219,8 +218,7 @@ while ~feof(fid)
                     medidas = cat(2,medidas,gps_locR);
 
                     if tant_MXD == 0
-                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;
-                        t = t - (t(1)-resultados_ECS(1,end));
+                        t = second(gps_datos{1})-(count):second(gps_datos{1})-1;                    
                         tant_MXD = gps_datos{1};
                     else
                         deltat = seconds(datetime(gps_datos{1})-datetime(tant_MXD))/(count);
