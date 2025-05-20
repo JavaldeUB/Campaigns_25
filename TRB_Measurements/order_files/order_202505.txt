@@ -1,0 +1,22 @@
+Number assignment of each measurement location/height
+1. THK
+2. PTB
+3. BTK
+4. BRT
+5. SST
+6. ENV1
+7. ENV2
+
+Permutation 1 20250521:
+#THK_1,ENV2_1,BRT_1,ENV1_1,PTB_1,BTK_1,SST_1,ENV1_2,BRT_2,THK_2,PTB_2,BTK_2,ENV2_2,SST_2
+Olfactometries 1 20250423:
+&
+ACQ Time respect to 10am (min):
+$
+
+Permutation 2 20250522:
+#SST_1,PTB_1,ENV2_1,BRT_1,BTK_1,THK_1,ENV1_1,BRT_2,PTB_2,ENV1_2,THK_2,ENV2_2,SST_2,BTK_2
+Olfactometries 2 20250423:
+&
+ACQ Time respect to 10am (min):
+$
